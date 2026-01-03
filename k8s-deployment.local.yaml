@@ -111,8 +111,7 @@ data:
   config.yaml: |
     api_key: "Bearer YOUR_SECRET_API_KEY_HERE"
     cors_origins:
-      - "http://localhost:3000"
-      - "https://your-domain.com"
+      - "*"
     sensors:
       - id: "dht22-room"
         type: "DHT22"
