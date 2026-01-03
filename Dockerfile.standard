@@ -4,17 +4,18 @@
 FROM python:3.11-slim
 WORKDIR /app
 
-# Install system dependencies for GPIO access
+# Install system dependencies for GPIO access (Raspberry Pi 5)
 RUN apt-get update && apt-get install -y \
     gcc \
     python3-dev \
     libgpiod3 \
     libgpiod-dev \
+    python3-lgpio \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install
 COPY requirements.txt .
-RUN pip install --no-cache-dir fastapi uvicorn[standard] adafruit-circuitpython-dht board PyYAML requests
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY main.py .
