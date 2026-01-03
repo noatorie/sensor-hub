@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     libgpiod3 \
     libgpiod-dev \
-    python3-lgpio \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install
