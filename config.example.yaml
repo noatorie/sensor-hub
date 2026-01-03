@@ -1,0 +1,44 @@
+# Example configuration with multiple sensors
+# Copy this to config.yaml and customize
+
+api_key: "Bearer your_secret_api_key"
+
+cors_origins:
+  - "http://localhost:3000"
+  - "https://your-domain.com"
+
+sensors:
+  # DHT22 Temperature/Humidity Sensor
+  - id: "dht22-room"
+    type: "DHT22"
+    name: "Living Room Climate Sensor"
+    enabled: true
+    pin: "D4"
+  
+  # Additional DHT22 on different pin
+  - id: "dht22-outdoor"
+    type: "DHT22"
+    name: "Outdoor Climate Sensor"
+    enabled: false
+    pin: "D17"
+  
+  # BME280 Temperature/Humidity/Pressure (future)
+  # - id: "bme280-main"
+  #   type: "BME280"
+  #   name: "Main Atmospheric Sensor"
+  #   enabled: true
+  #   i2c_address: 0x76
+  
+  # DS18B20 Waterproof Temperature (future)
+  # - id: "ds18b20-pool"
+  #   type: "DS18B20"
+  #   name: "Pool Temperature"
+  #   enabled: true
+  #   address: "28-xxxxxxxxxxxx"
+  
+  # BH1750 Light Sensor (future)
+  # - id: "bh1750-window"
+  #   type: "BH1750"
+  #   name: "Window Light Sensor"
+  #   enabled: true
+  #   i2c_address: 0x23

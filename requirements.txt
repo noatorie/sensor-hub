@@ -1,0 +1,9 @@
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+adafruit-circuitpython-dht>=4.0.0
+adafruit-blinka>=8.0.0
+PyYAML>=6.0.1
+requests>=2.31.0  # For healthcheck
+
+# For binary building
+pyinstaller>=6.3.0

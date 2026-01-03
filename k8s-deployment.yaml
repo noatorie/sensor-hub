@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-hub
+  labels:
+    app: sensor-hub
+spec:
+  replicas: 1  # Only 1 replica since it needs hardware access
+  selector:
+    matchLabels:
+      app: sensor-hub
+  template:
+    metadata:
+      labels:
+        app: sensor-hub
+    spec:
+      # Node selector to ensure it runs on the Pi with sensors
+      nodeSelector:
+        kubernetes.io/hostname: mumei  # Adjust to your Pi hostname
+      
+      containers:
+      - name: sensor-hub
+        image: ghcr.io/YOUR_GITHUB_USERNAME/sensor-hub:latest  # Update with your GitHub username
+        imagePullPolicy: Always
+        
+        ports:
+        - containerPort: 5000
+          name: http
+        
+        env:
+        - name: WORKERS
+          value: "1"
+        - name: CONFIG_FILE
+          value: "/app/config.yaml"
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: sensor-hub-secrets
+              key: api-key
+        
+        volumeMounts:
+        - name: config
+          mountPath: /app/config.yaml
+          subPath: config.yaml
+        # GPIO access (requires privileged or device mapping)
+        - name: dev-gpiomem
+          mountPath: /dev/gpiomem
+        - name: dev-gpio
+          mountPath: /dev/gpio
+        
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        
+        # Required for GPIO access
+        securityContext:
+          privileged: true
+      
+      volumes:
+      - name: config
+        configMap:
+          name: sensor-hub-config
+      - name: dev-gpiomem
+        hostPath:
+          path: /dev/gpiomem
+      - name: dev-gpio
+        hostPath:
+          path: /dev/gpio
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sensor-hub
+  labels:
+    app: sensor-hub
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  selector:
+    app: sensor-hub
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sensor-hub-config
+data:
+  config.yaml: |
+    api_key: "Bearer 432e0cc0-2d0c-477d-8c5e-915e805c01e6"
+    cors_origins:
+      - "http://localhost:3000"
+      - "https://kurisu.noatorie.com"
+    sensors:
+      - id: "dht22-room"
+        type: "DHT22"
+        name: "Living Room Climate Sensor"
+        enabled: true
+        pin: "D4"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sensor-hub-secrets
+type: Opaque
+stringData:
+  api-key: "Bearer 432e0cc0-2d0c-477d-8c5e-915e805c01e6"
