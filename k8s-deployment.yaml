@@ -42,11 +42,9 @@ spec:
         - name: config
           mountPath: /app/config.yaml
           subPath: config.yaml
-        # GPIO access (requires privileged or device mapping)
-        - name: dev-gpiomem
-          mountPath: /dev/gpiomem
-        - name: dev-gpio
-          mountPath: /dev/gpio
+        # GPIO access for Raspberry Pi 5 (requires gpiochip devices)
+        - name: dev
+          mountPath: /dev
         
         resources:
           requests:
@@ -64,12 +62,9 @@ spec:
       - name: config
         configMap:
           name: sensor-hub-config
-      - name: dev-gpiomem
+      - name: dev
         hostPath:
-          path: /dev/gpiomem
-      - name: dev-gpio
-        hostPath:
-          path: /dev/gpio
+          path: /dev
 
 ---
 apiVersion: v1
