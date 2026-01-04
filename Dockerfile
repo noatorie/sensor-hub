@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     python3-dev \
-    libgpiod2 \
+    libgpiod3 \
     libgpiod-dev \
     binutils \
     && rm -rf /var/lib/apt/lists/*
@@ -86,7 +86,7 @@ WORKDIR /app
 
 # Install only runtime dependencies for GPIO
 RUN apt-get update && apt-get install -y \
-    libgpiod2 \
+    libgpiod3 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
