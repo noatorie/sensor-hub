@@ -2,6 +2,13 @@
 
 A modular sensor management system for Raspberry Pi 5, designed to run as a Kubernetes-deployed API.
 
+## Requirements
+
+- **Python 3.9+** (tested with Python 3.9.0 and 3.11)
+- Raspberry Pi 5 or other microcontroller (for hardware sensors)
+- Docker (optional, for containerized deployment)
+- Kubernetes (optional, for orchestrated deployment)
+
 ## Features
 
 - 🔌 **Modular Architecture** - Easy to add new sensors
@@ -35,6 +42,15 @@ sensor-hub/
 ### Local Development
 
 ```bash
+# Create virtual environment (recommended)
+python -m venv venv
+
+# Activate virtual environment
+# On Linux/Mac:
+source venv/bin/activate
+# On Windows:
+.\venv\Scripts\Activate.ps1
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -44,6 +60,8 @@ python run.py
 # Or with uvicorn directly
 uvicorn main:app --host 0.0.0.0 --port 5000 --reload
 ```
+
+> ⚠️ **Note:** On Windows, GPIO libraries (`lgpio`, `rpi-lgpio`) will fail to install. This is expected - these are only needed on Raspberry Pi hardware.
 
 ### Docker Build
 

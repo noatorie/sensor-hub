@@ -1,0 +1,79 @@
+[33mcommit cad8a9b736a4d2fe334c137dc98927564b500faa[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: 6bc6ba3 640ae24
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Merge branch 'main' of github-noatorie:noatorie/sensor-hub
+
+[33mcommit 6bc6ba335390ab23ced916e701169fe51727701b[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Initial commit
+
+[33mcommit 640ae2419c1603fb879fadb2e790ea769d589bea[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Initial commit
+
+[33mcommit ef393473989bee1d9f29156b4ba25fc6f9095d7c[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Fix GPIO device mounts for Raspberry Pi 5 (use /dev instead of specific devices)
+
+[33mcommit 532a5ae37b4c4fed7a9953f7444281dc0a4ebfba[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Remove python3-lgpio system package (not in Debian), use pip package instead
+
+[33mcommit 323e41ed58b7c1472120392935a54f36cc3e3658[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Fix lgpio support and disable health check probes
+
+[33mcommit 160132778b2fa81f64dbb08a533d2c8bc7b4ed14[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Add rpi-lgpio dependency for GPIO support
+
+[33mcommit 5f4406eb44fa619576461d792133dc09c04f7dc7[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    adjust docker image, remove sensitive data
+
+[33mcommit 78a9bcb700bc5d587fe191879e8ca896197f38d1[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    fix lipgpio libs for docker
+
+[33mcommit b0c436be05d9f10061a9303fcf0655b3eca888e4[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Fix libgpiod package name in Dockerfile.standard
+
+[33mcommit 37156718918c403d40843d5a0407071adf724595[m
+Merge: 170fb26 c7c6a60
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 170fb26ce73a8e5c906abee383a85a26bf0137d1[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Initial commit: Sensor Hub with DHT22 support
+
+[33mcommit c7c6a60e1436aab016593e923397372e535d14a3[m
+Author: noatorie <kurokikurisu@gmail.com>
+Commit: noatorie <kurokikurisu@gmail.com>
+
+    Initial commit
